@@ -16,5 +16,13 @@ jobs:
     
     steps:
     - run: |
-        echo "Env: ${{ github.event.inputs.source }}" 
-        echo "Branch: ${{ github.event.inputs.dest }}"
+        echo "source: ${{ github.event.inputs.source }}" 
+        echo "dest: ${{ github.event.inputs.dest }}"
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+          destination_branch: ${{ github.event.inputs.source }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_label: "feature, automated pr"
+          pr_title: "[Example] Simple demo"
+
