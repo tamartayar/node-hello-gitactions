@@ -18,6 +18,8 @@ jobs:
     - run: |
         echo "source: ${{ github.event.inputs.source }}" 
         echo "dest: ${{ github.event.inputs.dest }}"
+    - name: Check out repository code
+      uses: actions/checkout@v2
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
