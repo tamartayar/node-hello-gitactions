@@ -16,14 +16,13 @@ jobs:
     
     steps:
     - run: |
-        echo "source: ${{ github.event.inputs.source }}" 
-        echo "dest: ${{ github.event.inputs.dest }}"
+
         curl -L \
         -X POST \
         -H "Accept: application/vnd.github+json" \
         -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
         -H "X-GitHub-Api-Version: 2022-11-28" \
-          https://api.github.com/repos/OWNER/REPO/pulls \
+        --url https://api.github.com/repos/tamartayar/${{ github.repository }}/pulls \
         -d '{"title":"Amazing new feature","body":"Please pull these awesome changes in!","head":"octocat: ${{ github.event.inputs.source }}","base":" ${{ github.event.inputs.dest }}"}'
     
 
